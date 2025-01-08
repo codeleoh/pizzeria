@@ -3,6 +3,7 @@ let modalQt = 1;
 const c = (el) => document.querySelector(el);
 const cs = (el) => document.querySelectorAll(el);
 
+// Listagem das pizzas
 
 pizzaJson.map((item, index) => {
     let pizzaItem = c('.models .pizza-item').cloneNode(true);
@@ -10,7 +11,6 @@ pizzaJson.map((item, index) => {
         style: "currency",
         currency: "BRL",
     });
-    
 
     pizzaItem.setAttribute('data-key', index)
     pizzaItem.querySelector('.pizza-item--img img').src = item.img;
@@ -44,4 +44,16 @@ pizzaJson.map((item, index) => {
     });
     
     c('.pizza-area').append(pizzaItem);
+})
+
+// Eventos do MODAL
+
+function closeModal() {
+    c('.pizzaWindowArea').style.opacity = 0;
+    setTimeout(() => {
+        c('.pizzaWindowArea').style.display = 'none';
+    }, 500)
+}
+cs('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item) => {
+    item.addEventListener('click', closeModal)
 })
