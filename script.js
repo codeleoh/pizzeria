@@ -17,6 +17,7 @@ pizzaJson.map((item, index) => {
     pizzaItem.querySelector('.pizza-item--price').innerHTML = `${pizzaPrice}`;
     pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
+
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
         let key = e.target.closest('.pizza-item').getAttribute('data-key');
@@ -57,3 +58,14 @@ function closeModal() {
 cs('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item) => {
     item.addEventListener('click', closeModal)
 })
+
+c('.pizzaInfo--qtmenos').addEventListener('click', () => {
+    if(modalQt > 1 ) {
+        modalQt--;
+        c('.pizzaInfo--qt').innerHTML = modalQt;
+    }
+});
+c('.pizzaInfo--qtmais').addEventListener('click', () => {
+    modalQt++;
+    c('.pizzaInfo--qt').innerHTML = modalQt;
+});
