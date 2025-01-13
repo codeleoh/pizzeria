@@ -81,11 +81,20 @@ cs('.pizzaInfo--size').forEach((size, sizeIndex) => {
 c('.pizzaInfo--addButton').addEventListener('click', () => {
     let size = parseInt(c('.pizzaInfo--size.selected').getAttribute('data-key'));
 
-    cart.push({
+    let identifier = pizzaJson[modalkey].id+'@'+size;
+
+    let key = cart.findIndex((item) => item.identifier == identifier);
+
+    if (key > -1) {
+        cart[key].qt += modalQt;
+    } else {
+        cart.push({
+        identifier,
         id: pizzaJson[modalkey].id,
         size,
         qt: modalQt
     });
+    }
 
     closeModal();
 });
